@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Icon } from "react-icons-kit";
+import { eye } from "react-icons-kit/feather/eye";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+
+import "./App.css";
 
 function App() {
+  const [input, setInput] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
+
+  const changetype = () => {
+    if (input === "password") {
+      setInput("text");
+      setIcon(eye);
+    } else {
+      setInput("password");
+      setIcon(eyeOff);
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="contanet">
+      <div className="card">
+        <input className="input" type={input}></input>
+        <samp className="icon" onClick={changetype}>
+          {" "}
+          <Icon icon={icon} />{" "}
+        </samp>
+      </div>
     </div>
   );
 }
